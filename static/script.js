@@ -74,6 +74,9 @@ async function predictWebcam() {
             .then(data => {
                 if (data.letter) predictionText.innerText = data.letter;
             });
+        } else {
+            // Clear the prediction text when hands leave the screen
+            predictionText.innerText = "-";
         }
     }
     window.requestAnimationFrame(predictWebcam);
