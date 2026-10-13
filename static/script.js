@@ -55,13 +55,14 @@ async function predictWebcam() {
             }
 
             // Extract coordinates relative to the wrist (index 0)
-            const wristX = hand[0].x;
+            // We subtract the X value from 1 to simulate the mirror effect used in training
+            const wristX = 1 - hand[0].x;
             const wristY = hand[0].y;
             let formattedLandmarks = [];
             
-            // Add X coordinates
-            for (const lm of hand) formattedLandmarks.push(lm.x - wristX);
-            // Add Y coordinates
+            // Add X coordinates (mirrored)
+            for (const lm of hand) formattedLandmarks.push((1 - lm.x) - wristX);
+            // Add Y coordinates (normal)
             for (const lm of hand) formattedLandmarks.push(lm.y - wristY);
 
             // Send to Flask backend
