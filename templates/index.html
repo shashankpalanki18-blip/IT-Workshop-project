@@ -9,12 +9,22 @@
 <body>
     <div class="container">
         <h1>ASL Sign Language Transcriber</h1>
-        <div class="video-container">
-            <!-- Video feed from webcam -->
-            <video id="webcam" autoplay playsinline></video>
-            <!-- Canvas to draw the tracking dots -->
-            <canvas id="output_canvas"></canvas>
+        
+        <!-- Wrapper added to align video and image side-by-side -->
+        <div class="main-content" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <div class="video-container">
+                <!-- Video feed from webcam -->
+                <video id="webcam" autoplay playsinline></video>
+                <!-- Canvas to draw the tracking dots -->
+                <canvas id="output_canvas"></canvas>
+            </div>
+            
+            <!-- ASL Reference Picture -->
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='ASL_PIC.jpg') }}" alt="ASL Signs" style="max-width: 40%; height: auto;">
+            </div>
         </div>
+
         <h2>Predicted Letter: <span id="prediction">-</span></h2>
     </div>
 
